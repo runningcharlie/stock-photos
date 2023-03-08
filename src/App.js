@@ -11,15 +11,19 @@ function App() {
   const fetchImages = async () => {
     setLoading(true);
     let url;
-    url = `${mainUrl}?clientID=lljXuqzLdmQYMCujc5ctORAcHZoI0x6HT5_jxrlso_Q`;
+    url = `${mainUrl}?client_id=lljXuqzLdmQYMCujc5ctORAcHZoI0x6HT5_jxrlso_Q`;
     try {
       const response = await fetch(url);
       const data = await response.json();
+      console.log(data);
     } catch (error) {
       setLoading(false);
       console.log(error);
     }
   };
+  useEffect(() => {
+    fetchImages();
+  }, []);
   return <h2>stock photos starter</h2>;
 }
 
