@@ -6,13 +6,17 @@ const mainUrl = `https://api.unsplash.com/photos/`;
 const searchUrl = `https://api.unsplash.com/search/photos/`;
 
 function App() {
+  const [loading, setLoading] = useState(false);
+  const [photos, setPhotos] = useState([]);
   const fetchImages = async () => {
+    setLoading(true);
     let url;
     url = `${mainUrl}?clientID=lljXuqzLdmQYMCujc5ctORAcHZoI0x6HT5_jxrlso_Q`;
     try {
       const response = await fetch(url);
       const data = await response.json();
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
