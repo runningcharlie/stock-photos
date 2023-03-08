@@ -27,6 +27,24 @@ function App() {
     fetchImages();
   }, []);
 
+  useEffect(() => {
+    const event = window.addEventListener("scroll", () => {
+      // 获取值：视口的内部高度、滚动了多少、文档的高度
+      // console.log(`innerHeight ${window.innerHeight}`);
+      // console.log(`scrollY ${window.scrollY}`);
+      // console.log(`body height ${document.body.scrollHeight}`);
+
+      // 要在不是loading状态的情况下加载新的图片
+      if (
+        !loading &&
+        window.innerHeight + window.scrollY >= document.body.scrollHeight - 100
+      ) {
+        console.log("it works");
+      }
+    });
+    return () => window.removeEventListener("scroll", event);
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("hello");
